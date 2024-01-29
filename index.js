@@ -4,6 +4,7 @@ const expressLayouts = require("express-ejs-layouts");
 const app = express();
 const port = 8000;
 const path = require("path");
+const db = require('./config/mongoose')
  
 app.use(express.urlencoded({extended:false}));
 app.use(expressLayouts);
