@@ -1,11 +1,16 @@
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/users')
 
-const authenticateToken = (req, res, next) => {
+module.exports.authenticateToken = (req, res, next) => {
+
   const token = req.headers.authorization;
 
+  console.log("here");
+
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+
+    console.log('inside');
+    return res.redirect('/auth/sign-In');
   }
 
   try {
@@ -13,7 +18,7 @@ const authenticateToken = (req, res, next) => {
     const user = userModel.findById(decoded.userId);
 
     if (!user) {
-      return res.status(401).json({ message: 'Unauthorized' });
+        return res.redirect('/auth/sign-In');
     }
 
     req.user = user; // Attach user information to the request object
@@ -23,4 +28,4 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = authenticateToken;
+ 
