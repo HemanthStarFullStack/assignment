@@ -10,4 +10,9 @@ router.use('/auth',require('./authRoutes'));
 
 router.get('/',jwtAuthMW.authenticateToken,indexPage.adminPage);
 
+router.post('/updateUser/:userID',UserCon.updatedUser);
+
+router.post('/deleteUser/:userID',UserCon.DeleteUser);
+
+
 module.exports = router;

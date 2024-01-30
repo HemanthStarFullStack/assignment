@@ -1,2 +1,29 @@
+<!-- Assuming 'users' is an array of user objects passed to the EJS file -->
 
-<div><h1>Admin Page</h1></div>
+<div>
+    <h1>Admin Page</h1>
+</div>
+
+<a href="/auth/sign-out">
+    <button>Sign-Out</button>
+</a>
+
+<div>
+    <h2>All Users:</h2>
+    <ul>
+        <% users.forEach(user => { %>
+            <li>
+                <strong>User ID:</strong> <%= user._id %> <br>
+                <strong>Email:</strong> <%= user.email %> <br>
+                <strong>Name:</strong> <%= user.name %> <br>
+                <strong>Admin:</strong> <%= user.isAdmin ? 'Yes' : 'No' %>
+                
+                <!-- Use a form for the delete action -->
+                <form method="POST" action="/deleteUser/<%= user._id %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+            <br>
+        <% }); %>
+    </ul>
+</div>
