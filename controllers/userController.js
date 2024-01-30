@@ -1,8 +1,11 @@
 
 const User = require('../models/users');
 
+const jwt = require('jsonwebtoken');
+
 module.exports.create = async function(req,res){
 
+    console.log("**********************",req.body);
 
     const adminEmail = "m.saihemanth1@gmail.com";
     const adminPassword = "123456789";
@@ -22,7 +25,7 @@ module.exports.create = async function(req,res){
 
         newReg.save();
 
-        return res.redirect('/users/sign-in');
+        return res.redirect('/users/sign-In');
     }else{
             return res.redirect('back');
 
@@ -32,25 +35,32 @@ module.exports.create = async function(req,res){
 module.exports.createSession = async function(req,res){
 
     try {
-        const { email, password } = req.body;
-    
+
+        console.log("heloooooooooooooooooooooooooooooooooooooooooooooo");
+
+        console.log(req.body);
+
+        
+        const email = req.body.email;
+        const password = req.body.password;
+
         const user = await User.findOne({ email });
     
         if (!user) {
           return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        if(user.password != req.user.password){
+        if(user.password != req.body.password){
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-
+        
+        req.session.userId = user._id;
 
         // Generate JWT
         const token = jwt.sign({ userId: user._id }, 'PheobeBuffay', {
           expiresIn: '1h',
         });
-    
-        req.session.userId = user._id; // Store user ID in session
+      // Store user ID in session
     
         if (!user.isAdmin){
 
@@ -61,7 +71,7 @@ module.exports.createSession = async function(req,res){
         res.redirect('/');
 
       } catch (err) {
-        console.error(err);
+        console.log(err);
         res.status(500).json({ message: 'Server error' });
       }
 };
@@ -89,5 +99,4 @@ module.exports.signUp = function(req,res){
   return res.redirect('back');
 
 }
-
      

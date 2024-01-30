@@ -5,7 +5,7 @@ module.exports.authenticateToken = (req, res, next) => {
 
   const token = req.headers.authorization;
 
-  console.log("here");
+  console.log("here",token);
 
   if (!token) {
 
