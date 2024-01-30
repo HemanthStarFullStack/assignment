@@ -4,7 +4,7 @@ const router = express.Router();
 
 const UserCon = require('../controllers/userController');
 
- 
+router.get('/sign-In',UserCon.signIn);
 
 router.get('/sign-Up',UserCon.signUp);
 

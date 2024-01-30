@@ -1,5 +1,5 @@
 <div>
-    <form action="/auth/create-session" method="post">
+    <form action="/auth/create-user" method="post" >
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -9,17 +9,20 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
-     
+        <div class="mb-3">
+            <label for="example3" class="form-label">Name</label>
+            <input type="text" class="form-control" id="example3">
+        </div>
+        
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
 </div>
 
 <div>
-  <a href="/auth/sign-Up">
-
-    <button>signUp</button>
-  </a>
-   
-</div>
-
+    <a href="/auth/sign-In">
+  
+      <button>signIn</button>
+    </a>
+     
+  </div>
