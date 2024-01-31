@@ -49,6 +49,17 @@ module.exports.getAllUsers = async (req, res) => {
  
 // Update user
 module.exports.updatedUser = async (req, res) => {
+
+    console.log(req.body);
+
+    if(req.body.isAdmin == "on"){
+        req.body.isAdmin = true;
+    }
+    else{
+        req.body.isAdmin = false;
+    }
+
+
     try {
         const updatedUser = await User.findByIdAndUpdate(
             req.params.userID,

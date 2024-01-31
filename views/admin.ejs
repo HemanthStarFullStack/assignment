@@ -1,4 +1,8 @@
-<!-- Assuming 'users' is an array of user objects passed to the EJS file -->
+ <div style="display: flex; align-items: center; flex-direction: column;">
+
+    <!-- Assuming 'users' is an array of user objects passed to the EJS file -->
+
+
 
 <div>
     <h1>Admin Page</h1>
@@ -51,6 +55,11 @@
                     <label for="addUser-email">Email:</label>
                     <input type="text" id="addUser-email" name="email" required value="<%= user.email %>">
 
+                        
+                    <label for="addUser-isAdmin">Is Admin:</label>
+                    <input type="checkbox" id="addUser-isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
+
+
                     <button type="submit">Save</button>
                 </form>
             </li>
@@ -60,3 +69,7 @@
 </div>
 
  
+
+
+
+ </div>
