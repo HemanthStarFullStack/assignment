@@ -25,6 +25,11 @@ module.exports.create = async function(req,res){
 
         newReg.save();
 
+        if(req.body.isAdmin === false){
+
+            return res.redirect('/');
+        }
+
         return res.redirect('/auth/sign-In');
     }else{
             return res.redirect('back');
@@ -46,14 +51,13 @@ module.exports.getAllUsers = async (req, res) => {
 module.exports.updatedUser = async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(
-            req.params.userId,
+            req.params.userID,
             req.body,
-            { new: true }
         );
         if (!updatedUser) {
             return res.status(404).json({ error: 'User not found' });
         }
-        res.status(200).json(updatedUser);
+        return res.redirect('/');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -65,11 +69,20 @@ module.exports.DeleteUser = async (req, res) => {
     console.log("hello man");
 
     try {
-        const deletedUser = await User.findByIdAndDelete(req.params.userID);
-        if (!deletedUser) {
+        const user = await User.findById(req.params.userID);
+
+        if(user.isAdmin){
+            return res.status(404).json({Message:"cannot delete admin"});
+        }
+        if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        res.status(200).json(deletedUser);
+
+        user.save();
+
+        let deletedUser = await User.findByIdAndDelete(req.params.userID);
+
+        return res.redirect('back');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -121,27 +134,26 @@ module.exports.createSession = async function(req, res) {
 
 module.exports.signIn = async function(req,res){
 
-    let data = await req.user;
 
-    console.log("reached",data);
+    if(!req.cookies.auth){
 
-    if(!req.user){
+        return res.render('login');
+
+    }
+
+    return res.redirect('/');
+
+}
+
+module.exports.signUp = function(req,res){
+
+    if(!req.cookies.auth){
 
         return res.render('login');
 
     }
 
     return res.redirect('back');
-
-}
-
-module.exports.signUp = function(req,res){
-
-  if(!req.user){
-    return res.render('signUp');
-  }
-
-  return res.redirect('back');
 
 }
 

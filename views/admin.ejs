@@ -8,6 +8,24 @@
     <button>Sign-Out</button>
 </a>
 
+<!-- Add User Form (Hidden initially) -->
+<button onclick="toggleForm('addUser')">Add User</button>
+<form id="addUser-form" method="POST" action="addUserByAdmin" style="display: none;">
+    <label for="addUser-email">Email:</label>
+    <input type="text" id="addUser-email" name="email" required>
+    
+    <label for="addUser-password">Password:</label>
+    <input type="password" id="addUser-password" name="password" required>
+    
+    <label for="addUser-name">Name:</label>
+    <input type="text" id="addUser-name" name="name" required>
+    
+    <label for="addUser-isAdmin">Is Admin:</label>
+    <input type="checkbox" id="addUser-isAdmin" name="isAdmin">
+    
+    <button type="submit">Add</button>
+</form>
+
 <div>
     <h2>All Users:</h2>
     <ul>
@@ -18,12 +36,27 @@
                 <strong>Name:</strong> <%= user.name %> <br>
                 <strong>Admin:</strong> <%= user.isAdmin ? 'Yes' : 'No' %>
                 
-                <!-- Use a form for the delete action -->
+                <!-- Delete Form -->
                 <form method="POST" action="/deleteUser/<%= user._id %>">
                     <button type="submit">Delete</button>
+                </form>
+                
+                <!-- Update Form (Hidden initially) -->
+                <button onclick="toggleForm('<%= user._id %>')">Update</button>
+                <form id="<%= user._id %>-form" method="POST" action="/updateUser/<%= user._id %>" style="display: none;">
+
+                    <label for="<%= user._id %>-name">Name:</label>
+                    <input type="text" id="<%= user._id %>-name" name="name" value="<%= user.name %>">
+
+                    <label for="addUser-email">Email:</label>
+                    <input type="text" id="addUser-email" name="email" required value="<%= user.email %>">
+
+                    <button type="submit">Save</button>
                 </form>
             </li>
             <br>
         <% }); %>
     </ul>
 </div>
+
+ 

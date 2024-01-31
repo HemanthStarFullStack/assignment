@@ -1,25 +1,39 @@
-<div>
-    <form action="/auth/create-session" method="post">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-        </div>
+
+
+<div style=" background-image: url('/assets/pic.jpg'); height: 100%; display: flex;background-image: url(/assets/pic.jpg);
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+">
+
+<div style="background: rgba(255, 255, 255, 0.5);">
+
+  <form action="/auth/create-session" method="post">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+    </div>
+ 
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div>
+    <a href="/auth/sign-Up">
+  
+      <button>signUp</button>
+    </a>
      
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  </div>
 
 </div>
-
-<div>
-  <a href="/auth/sign-Up">
-
-    <button>signUp</button>
-  </a>
-   
+    
 </div>
+
+ 
 

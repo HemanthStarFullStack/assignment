@@ -14,3 +14,33 @@ module.exports.adminPage = async(req,res) =>{
     }
 
 }
+
+
+module.exports.Admincreate= async function(req,res){
+
+    const adminEmail = "m.saihemanth1@gmail.com";
+    const adminPassword = "123456789";
+   
+    let user =await User.findOne({email:req.body.email});
+    if(!user){
+        console.log(req.body);
+        newUser = await User.create(req.body);
+
+        let newReg =await User.findOne({email:req.body.email});
+
+        if(newReg.email == adminEmail && newReg.password == adminPassword){
+
+          newReg.isAdmin = true;
+
+        }
+
+        newReg.save();
+
+         
+
+        return res.redirect('/');
+    }else{
+            return res.redirect('back');
+
+    }
+}
