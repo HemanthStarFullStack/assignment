@@ -2,7 +2,10 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/users');
 
 module.exports.authenticateToken = async(req, res, next) => {
+
     const token = req.cookies.auth;
+
+    console.log("hello",token);
 
     if (!token) {
         console.log('inside');
@@ -22,3 +25,6 @@ module.exports.authenticateToken = async(req, res, next) => {
         res.status(401).json({ message: 'Unauthorized' });
     }
 };
+
+
+ 

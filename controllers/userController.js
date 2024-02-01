@@ -160,7 +160,7 @@ module.exports.signUp = function(req,res){
 
     if(!req.cookies.auth){
 
-        return res.render('login');
+        return res.render('signUp');
 
     }
 

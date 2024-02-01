@@ -1,0 +1,35 @@
+<div style="display: flex; align-items: center; flex-direction: column;">
+
+    <!-- Assuming 'users' is an array of user objects passed to the EJS file -->
+
+
+
+<div>
+    <h1>Admin Page</h1>
+</div>
+
+ 
+
+<!-- Add User Form (Hidden initially) -->
+<button>Add User</button>
+<form id="addUser-form" method="POST" action="addUserByAdmin" style="display: none;">
+    <label for="addUser-email">Email:</label>
+    <input type="text" id="addUser-email" name="email" required>
+    
+    <label for="addUser-password">Password:</label>
+    <input type="password" id="addUser-password" name="password" required>
+    
+    <label for="addUser-name">Name:</label>
+    <input type="text" id="addUser-name" name="name" required>
+    
+    <label for="addUser-isAdmin">Is Admin:</label>
+    <input type="checkbox" id="addUser-isAdmin" name="isAdmin">
+    
+    <button type="submit">Add</button>
+</form>
+
+<div>
+    <h2>All Users:</h2>
+
+
+ </div>
