@@ -11,6 +11,8 @@ router.use('/auth',require('./authRoutes'));
 
 router.get('/',jwtAuthMW.authenticateToken,indexPage.adminPage);
 
+router.get('/allUsers',UserCon.getAllUsers);
+
 router.post('/addUserByAdmin',adminCon.Admincreate);
 
 router.post('/updateUser/:userID',UserCon.updatedUser);
